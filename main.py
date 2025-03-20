@@ -1,4 +1,5 @@
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -36,6 +37,12 @@ def main():
 
         dt = time_tracker.tick(60) / 1000
         updatable.update(dt)
+
+        for sprite in asteroids:
+            collision = sprite.collide(player)
+            if collision:
+                print("Game over!")
+                sys.exit()
 
 if __name__ == "__main__":
     main()
