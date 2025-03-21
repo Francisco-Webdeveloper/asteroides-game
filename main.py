@@ -42,8 +42,15 @@ def main():
         updatable.update(dt)
 
         for sprite in asteroids:
-            collision = sprite.collide(player)
-            if collision:
+
+            for shot in shots:
+                collision_shot_asteroid = sprite.collide(shot)
+                if collision_shot_asteroid:
+                    shot.kill()
+                    sprite.split()
+
+            collision_player_asteroid = sprite.collide(player)
+            if collision_player_asteroid:
                 print("Game over!")
                 sys.exit()
 
